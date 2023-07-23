@@ -1,4 +1,4 @@
-# Moviez - a simple movie app
+# Moviez - A simple movie app
 #### This app allows its users to simply:
 1. Easily find movies by selecting different genres, languages and services
 2. Get information about movies and movie people
