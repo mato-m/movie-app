@@ -18,6 +18,9 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "dist")));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 app.use("/genres", jwtMiddleware, genreRouter);
 app.use("/languages", jwtMiddleware, langRouter);
 app.use("/services", jwtMiddleware, serviceRouter);
@@ -27,6 +30,5 @@ app.use("/watched", jwtMiddleware, watchedRouter);
 app.use("/ratings", jwtMiddleware, ratingRouter);
 app.use("/lists", jwtMiddleware, listRouter);
 app.use("/movies", jwtMiddleware, movieRouter);
-
 const port = process.env.PORT;
 app.listen(port, () => console.log("Server started on port " + port));
