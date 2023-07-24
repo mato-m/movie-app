@@ -11873,7 +11873,7 @@ Pn.default = wl;
 var qy = Xa.exports;
 const G = od(qy),
   Xc = {
-    url: "https://moviez-3vtd.onrender.com/movies/976dedaa-06ba-4425-8a59-9585fba7c1bf",
+    url: "https://moviez-3vtd.onrender.com",
   },
   D = Xc.url;
 function Yy(e) {
