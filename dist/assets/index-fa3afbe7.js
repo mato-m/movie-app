@@ -12282,7 +12282,6 @@ const Ae = () =>
                       children: [
                         s.jsx(Fp, {}),
                         s.jsx("input", {
-                          autoFocus: !0,
                           onKeyDown: (p) => {
                             p.key === "Enter" && h();
                           },
@@ -15072,6 +15071,7 @@ const d2 = () => {
         children: [
           l &&
             s.jsx(ze, {
+              autoFocus: !1,
               options: l.map((v) => ({
                 value: v.genre_id,
                 label: v.genre_name,
@@ -15082,6 +15082,7 @@ const d2 = () => {
             }),
           h &&
             s.jsx(ze, {
+              autoFocus: !1,
               options: h.map((v) => ({ value: v.lang_id, label: v.lang_name })),
               value: y,
               onChange: x,
@@ -15089,6 +15090,7 @@ const d2 = () => {
             }),
           w &&
             s.jsx(ze, {
+              autoFocus: !1,
               options: w.map((v) => ({ value: v.serv_id, label: v.serv_name })),
               value: C,
               onChange: m,
@@ -17555,6 +17557,7 @@ function C2() {
                 s.jsx("div", {
                   style: {
                     paddingTop: 70,
+                    paddingBottom: 30,
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "flex-start",
