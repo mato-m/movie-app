@@ -4,14 +4,13 @@ const deleteMovie = require("../controllers/movie/deleteMovie");
 const getMoviesByFilter = require("../controllers/movie/getMoviesByFilter");
 const updateMovie = require("../controllers/movie/updateMovie");
 const getMovieById = require("../controllers/movie/getMovieById");
-const jwtMiddleware = require("../jwtMiddleware");
 const movieRouter = express.Router();
 
-movieRouter.get("", jwtMiddleware, getMoviesByFilter);
-movieRouter.get("/:movie_id", jwtMiddleware, getMovieById);
-movieRouter.post("", jwtMiddleware, addMovie);
+movieRouter.get("", getMoviesByFilter);
+movieRouter.get("/:movie_id", getMovieById);
+movieRouter.post("", addMovie);
 
-movieRouter.delete("/:movie_id", jwtMiddleware, deleteMovie);
-movieRouter.put("/:movie_id", jwtMiddleware, updateMovie);
+movieRouter.delete("/:movie_id", deleteMovie);
+movieRouter.put("/:movie_id", updateMovie);
 
 module.exports = movieRouter;

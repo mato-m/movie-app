@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken");
 const secretKey = process.env.JWT_SECRET;
 
 const jwtMiddleware = (req, res, next) => {
-  const token = req.header("Authorization").split(" ")[1];
+  const token =
+    req.header("Authorization") && req.header("Authorization").split(" ")[1];
   if (!token) {
     return res.send({
       status: 2,

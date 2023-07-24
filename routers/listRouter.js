@@ -8,26 +8,25 @@ const addMovieToList = require("../controllers/list/addMovieToList");
 const showAllListMovies = require("../controllers/list/showAllListMovies");
 const changeList = require("../controllers/list/changeList");
 const getUserListsAndMovieInfo = require("../controllers/list/showAllUserLists");
-const jwtMiddleware = require("../jwtMiddleware");
 const listRouter = express.Router();
 
-listRouter.get("/movies/:lst_id", jwtMiddleware, showAllListMovies);
-listRouter.delete("/remove", jwtMiddleware, removeMovieFromList);
-listRouter.post("", jwtMiddleware, createList);
+listRouter.get("/movies/:lst_id", showAllListMovies);
+listRouter.delete("/remove", removeMovieFromList);
+listRouter.post("", createList);
 
 listRouter.get(
   "/:lst_usr_id/:movie_id",
-  jwtMiddleware,
+
   getUserListsAndMovieInfo
 );
-listRouter.get("/:lst_usr_id/all", jwtMiddleware, showAllUserLists);
+listRouter.get("/:lst_usr_id/all", showAllUserLists);
 
-listRouter.get("/:lst_usr_id/public", jwtMiddleware, showPublicUserLists);
+listRouter.get("/:lst_usr_id/public", showPublicUserLists);
 
-listRouter.put("/:lst_id", jwtMiddleware, changeList);
+listRouter.put("/:lst_id", changeList);
 
-listRouter.delete("/:lst_id", jwtMiddleware, deleteList);
+listRouter.delete("/:lst_id", deleteList);
 
-listRouter.post("/add", jwtMiddleware, addMovieToList);
+listRouter.post("/add", addMovieToList);
 
 module.exports = listRouter;
