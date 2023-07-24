@@ -12824,7 +12824,7 @@ const G0 = ({ sameUser: e, user_id: t, setMessage: n }) => {
         } catch {
           n("Couldn't add list");
         } finally {
-          j(null), T("body"), s(!1);
+          s(!1), j(null), T("body");
         }
       },
       C = async () => {
