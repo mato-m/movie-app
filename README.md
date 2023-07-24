@@ -12,34 +12,6 @@ Check out the [live demo](https://moviez-3vtd.onrender.com/)!
 3. PostgreSQL database
 ## Database schema
 ![DB schema](https://github.com/mato-m/movie-app/assets/64593617/5f36e8eb-98b3-4143-84e1-3ce59b3910a4)
-## Environment variables
-You should define the following variables in .env file
-in order to use the app properly. Variables starting with
-DB are related to database parameters.
-
-PORT - default is 3000
-
-DB_USER
-
-DB_HOST
-
-DB_DATABASE
-
-DB_PASSWORD
-
-DB_PORT
-
-JWT_SECRET - secret key used for JWT validation
-## DB dump file
-You can import [dump.sql](https://github.com/mato-m/movie-app/blob/main/dump.sql) file into your DBMS
-to have access to existing data.
-## Existing users
-|email | password  | role |
-| :---:   | :---: | :---: |
-| admin  | 123  | admin |
-|  user1 |   123|  user |
-| user2  | 123  | user |
-|  user3 |   123|  user |
 ## Future plans
 1. Add loading animations
 2. Enable users to connect with other users with similar movie taste
