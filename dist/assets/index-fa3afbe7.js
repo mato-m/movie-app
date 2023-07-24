@@ -11882,8 +11882,8 @@ Pn.default = kl;
 })(ni, ni.exports);
 var t0 = ni.exports;
 const q = cd(t0),
-  td = { url: "https://moviez-3vtd.onrender.com", port: 3e3 },
-  W = td.url;
+  td = { url: "http://localhost", port: 3e3 },
+  W = td.url + ":" + td.port;
 function n0(e) {
   if (Array.isArray(e)) {
     for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];
