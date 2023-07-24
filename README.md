@@ -1,5 +1,5 @@
 # Moviez - A simple movie app
-Check out the [demo](https://moviez-3vtd.onrender.com/)
+Check out the [live demo](https://moviez-3vtd.onrender.com/)!
 ## This app allows its users to simply:
 1. Easily find movies by selecting different genres, languages and services
 2. Get information about movies and movie people
