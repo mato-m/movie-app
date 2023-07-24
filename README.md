@@ -13,8 +13,7 @@ Check out the [live demo](https://moviez-3vtd.onrender.com/)!
 ## Database schema
 ![DB schema](https://github.com/mato-m/movie-app/assets/64593617/5f36e8eb-98b3-4143-84e1-3ce59b3910a4)
 ## Future plans
-1. Add loading animations
-2. Enable users to connect with other users with similar movie taste
-3. Enable comments
-4. Search boxes
-5. Reduce image size to save space
+1. Enable users to connect with other users with similar movie taste
+2. Enable comments
+3. Search boxes
+4. Reduce image size to save space, lazy loading
