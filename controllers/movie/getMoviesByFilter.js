@@ -3,85 +3,28 @@ const pool = require("../../dbConfig");
 const getMoviesByFilter = async (req, res) => {
   const client = await pool.connect();
   try {
-    const {
-      genres,
-      languages,
-      services,
-      minYear,
-      maxYear,
-      minRating,
-      sortType,
-    } = req.body;
-
-    const whereClauses = [];
-    const queryParams = [];
-
-    if (genres && genres.length > 0) {
-      const genrePlaceholders = genres
-        .map((_, index) => `$${index + 1}`)
-        .join(",");
-      whereClauses.push(
-        `movie_id IN (SELECT gm_movie_id FROM moviez.genre_movie WHERE gm_genre_id IN (${genrePlaceholders}))`
-      );
-      queryParams.push(...genres);
-    }
-
-    if (languages && languages.length > 0) {
-      const langPlaceholders = languages
-        .map((_, index) => `$${index + 1 + queryParams.length}`)
-        .join(",");
-      whereClauses.push(
-        `movie_id IN (SELECT lm_movie_id FROM moviez.lang_movie WHERE lm_lang_id IN (${langPlaceholders}))`
-      );
-      queryParams.push(...languages);
-    }
-
-    if (services && services.length > 0) {
-      const servicePlaceholders = services
-        .map((_, index) => `$${index + 1 + queryParams.length}`)
-        .join(",");
-      whereClauses.push(
-        `movie_id IN (SELECT sm_movie_id FROM moviez.serv_movie WHERE sm_service_id IN (${servicePlaceholders}))`
-      );
-      queryParams.push(...services);
-    }
-
-    if (minYear) {
-      whereClauses.push(`movie_year >= $${queryParams.length + 1}`);
-      queryParams.push(minYear);
-    }
-
-    if (maxYear) {
-      whereClauses.push(`movie_year <= $${queryParams.length + 1}`);
-      queryParams.push(maxYear);
-    }
-
-    if (minRating) {
-      whereClauses.push(`
-        (SELECT AVG(rating) FROM moviez.rating WHERE rating_movie_id = movie.movie_id) >= $${
-          queryParams.length + 1
-        }
-      `);
-      queryParams.push(minRating);
-    }
-
-    let orderByClause = "movie_name";
-    if (sortType === "rating") {
-      orderByClause =
-        "(SELECT AVG(rating) FROM moviez.rating WHERE rating_movie_id = movie.movie_id) DESC";
-    } else if (sortType === "year") {
-      orderByClause = "movie_year";
-    }
-
     const query = `
       SELECT movie.movie_id, movie.movie_name, movie.movie_imdb, movie.movie_year, movie.movie_trailer, movie.movie_img
-      FROM moviez.movie
-      ${whereClauses.length > 0 ? `WHERE ${whereClauses.join(" AND ")}` : ""}
-      ORDER BY ${orderByClause}
-    `;
+      FROM moviez.movie`;
+    const queryGenres = `
+      SELECT * FROM moviez.genre ORDER BY genre_name`;
+    const queryLang = `
+      SELECT * FROM moviez.lang ORDER BY lang_name`;
+    const queryServ = `
+      SELECT * FROM moviez.serv ORDER BY serv_name`;
 
-    const result = await client.query(query, queryParams);
+    const result5 = await client.query(
+      "SELECT * FROM moviez.pers ORDER BY pers_fn"
+    );
+    const result = await client.query(query);
+    const result2 = await client.query(queryGenres);
+    const result3 = await client.query(queryLang);
+    const result4 = await client.query(queryServ);
     const movies = result.rows;
+    const g = result2.rows;
+    const l = result3.rows;
+    const s = result4.rows;
+    const p = result5.rows;
 
     const detailedMovies = [];
 
@@ -139,6 +82,10 @@ const getMoviesByFilter = async (req, res) => {
       status: 0,
       message: "Successfully retrieved movies.",
       data: detailedMovies,
+      genres: g,
+      languages: l,
+      services: s,
+      people: p,
     });
   } catch (error) {
     res.send({
